@@ -236,3 +236,8 @@ Additional features include handling terrain grids, model loading with `OBJLoade
 
 In terms of gameplay interactions, the engine allows users to navigate the 3D environment, toggle visual effects (e.g., clouds, fog), and explore the generated world with dynamic terrain and object placements. The system is modular and can be expanded to include more complex features or assets.
 
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Contact
+For questions or contributions, feel free to open an issue or reach out via the [GitHub repository](https://github.com/EvilSasu/JavaOpenGL).
