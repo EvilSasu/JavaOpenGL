@@ -4,7 +4,7 @@ This project utilizes Java with OpenGL to create a simple 3D graphics engine. Th
 
 ---
 
-## `MainLoop.java`
+## `MainLoop`
 
 The `MainLoop` class represents the main game loop, where the graphics and interactions are handled.
 
@@ -28,7 +28,7 @@ The `MainLoop` class represents the main game loop, where the graphics and inter
   
 ---
 
-## `Kamera.java`
+## `Kamera`
 
 The `Kamera` class handles the camera's position and movement within the 3D world.
 
@@ -40,7 +40,7 @@ The `Kamera` class handles the camera's position and movement within the 3D worl
 
 ---
 
-## `Light.java`
+## `Light`
 
 The `Light` class defines a light source in the scene.
 
@@ -50,7 +50,7 @@ The `Light` class defines a light source in the scene.
 
 ---
 
-## `Obiekt.java`
+## `Obiekt`
 
 The `Obiekt` class represents a 3D object (e.g., trees, rocks) in the world.
 
@@ -65,7 +65,7 @@ The `Obiekt` class represents a 3D object (e.g., trees, rocks) in the world.
 
 ---
 
-## `Terrain.java`
+## `Terrain`
 
 The `Terrain` class generates and manages the terrain grid in the game.
 
@@ -192,12 +192,47 @@ The `Terrain` class generates and manages the terrain grid in the game.
 - Keeps track of the number of rows in the texture sheet for particle animations.  
 - Provides getters and setters for the texture ID and number of rows.
 
+---
 
+## `ParticlesSystem`  
+**Purpose**: Manages the creation and emission of particles in a particle system. It controls the generation of particles, their behaviors, and properties such as speed, scale, and life length. The system can create particles with various effects based on the configuration parameters.  
 
-## Summary
-
-The provided code outlines a basic 3D world with random object generation, a particle system for visual effects like fog and clouds, and camera movement based on keyboard inputs. It uses OpenGL for rendering the terrain and models, and provides a simple interface for modifying the visual aspects of the scene (e.g., toggling clouds and fog). The game loop is structured to continuously update the camera position, particle effects, and object rendering in a real-time environment.
+**Key Features**:  
+- Configurable particles per second (pps), average speed, gravity compliance, life length, and scale.  
+- Ability to define a direction for the particle emission with a deviation.  
+- Randomization of rotation for particles.  
+- Support for introducing errors in speed, life, and scale to make particles more varied.  
+- Particles are generated within a specified direction or randomly in 3D space.  
+- Generates particles with random velocities within a cone or uniform random distribution.  
+- Emission of particles at runtime based on frame time and particle rate.  
 
 ---
 
-This structure demonstrates a typical OpenGL application in Java, combining rendering, interaction, and particle systems to create a dynamic 3D world.
+## `ParticleShader`  
+**Purpose**: Defines the graphical shaders that control how particle textures are applied to the particles in the system. The vertex shader sets up the particle’s position, and the fragment shader defines how the texture appears on the particle.  
+
+**Key Features**:  
+- Fragment shader applies particle texture and handles color.  
+- Vertex shader computes particle positions and texture coordinates based on transformations.  
+- The fragment shader uses a simple texture lookup to apply particle images.  
+- The vertex shader supports transforming particle positions based on projection and model-view matrices.  
+
+---
+
+## `ShaderProgram`  
+**Purpose**: Manages the loading, compiling, and linking of shader programs. It abstracts shader management, providing an interface to interact with GLSL shaders in OpenGL. This class facilitates the loading of shader data and the management of uniform variables, textures, and matrices.  
+
+**Key Features**:  
+- Loads and compiles vertex and fragment shaders from files.  
+- Manages and binds shaders to OpenGL contexts.  
+- Provides an interface for passing data (uniforms, attributes) to shaders.  
+- Allows for applying transformation matrices to objects (like models or particles) in the scene.
+
+### Summary:
+
+This project is a 3D graphics engine developed using Java and OpenGL. It includes core components to handle terrain generation, 3D object rendering (e.g., trees, rocks), particle effects (clouds, fog), and camera controls. The main class, `MainLoop`, orchestrates the game loop, loading and rendering terrain, objects, and particle effects while responding to user input. Key components like `Kamera`, `Light`, and `Obiekt` manage the camera, lighting, and 3D objects respectively.
+
+Additional features include handling terrain grids, model loading with `OBJLoader`, and object rendering using `ObiektRenderer`. Particle effects are managed through classes like `Particle`, `ParticleManager`, and `ParticleRenderer`, providing realistic visual effects like clouds and fog. The engine utilizes shaders to handle graphical transformations and texture application, enabling efficient rendering of both objects and particles.
+
+In terms of gameplay interactions, the engine allows users to navigate the 3D environment, toggle visual effects (e.g., clouds, fog), and explore the generated world with dynamic terrain and object placements. The system is modular and can be expanded to include more complex features or assets.
+
